@@ -1,0 +1,50 @@
+Title: Tree-Mendous Alphabetizer - Binary Search Tree
+
+Author: Oluwatimilehin Dayo-Kayode
+
+Purpose: Create an Alphabetizer that arranges a list of words in alphabetical
+order
+
+Files: StringBST.h StringBST.cpp testStringBST.cpp Alphabetizer.h
+Alphabetizer.cpp testAlphabetizer.cpp  testfile.txt main.cpp Makefile README
+
+-StringBST.h:This header file contains the function declarations of the public 
+and private functions that are used in this class. 
+
+-StringBST.cpp: This file contains the implementation of my binary search tree 
+and handles every manipulation required. It adds nodes, removes nodes, checks
+if something is contained within it, and checks the size of it among other
+things. It also contains two constructors and a destructor for deleting 
+allocated memory. One of the constructors takes no parameters and initializes
+an empty bst while the second one takes an array of strings and the array size
+as parameters and then initializes a bst with the strings in the array.
+
+-testStringBST.cpp: This file contains the code used to test the functions
+declared and defined in the StringBST header and compilation files.
+
+-Alphabetizer.h: This file contains the declarations for the public and private
+functions and data members used in the Alphabetizer class
+
+-Alphabetizer.cpp: This file contains the definitions of the functions used in 
+my implementation of the Alphabetizer class. It handles running the program in'
+either interactive or automated mode, and also handles the direction that the
+inputed strings are printed in. It also contains the default constructor and
+destructor for the Alphabetizer class
+
+-testAlphabetizer.cpp: This file tests the functions declared and defined in the 
+Alphabetizer header and compilation files.
+
+main.cpp: This file is the brains of the whole program. It reads in the command
+line arguments, and decides based on these arguments whether to run the program
+in interactive or automated mode, and to print in reverse or forward order.
+
+testfile.txt: this file contains a list of words used to be be used in
+conjunction with my main.cpp file in order to test the functionality of the 
+whole program.
+
+Makefile; This file creates executables for compiling, running, and providing 
+my files.
+
+
+README: This file documents my implementation of my program with explanations 
+regarding what each class and file does.

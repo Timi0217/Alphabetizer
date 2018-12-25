@@ -1,0 +1,571 @@
+Hello, odayok01. Your last provide for hw4:
+
+odayok01.1.log
+file name:/comp/15/grading/hw4/odayok01.1.log
+provide started by odayok01 on Sat Mar 18 15:31:24 2017
+Hello, odayok01<Oluwatimilehin A. Dayo-Kayode>!
+Receiving solution to 'hw4' in class 'comp15'.
+Checking all files:
+    main.cpp (616 bytes)
+    StringBST.h (4625 bytes)
+    StringBST.cpp (13019 bytes)
+    Alphabetizer.h (645 bytes)
+    Alphabetizer.cpp (2086 bytes)
+    README (2364 bytes)
+    Makefile (706 bytes)
+    main.cpp (616 bytes)
+    testAlphabetizer.cpp (232 bytes)
+    testStringBST.cpp (1585 bytes)
+Total size of files is 26494 bytes.
+This is submission 1 of assignment hw4 in class 'comp15'.
+
+Are you ready to provide these for testing (yes or no)? 
+assignment was due Sat Mar 18 01:00:00 2017,
+but you submitted it on Sat Mar 18 15:31:31 2017.
+Computing lateness penalty.
+    copying file 'main.cpp'
+    copying file 'StringBST.h'
+    copying file 'StringBST.cpp'
+    copying file 'Alphabetizer.h'
+    copying file 'Alphabetizer.cpp'
+    copying file 'README'
+    copying file 'Makefile'
+    copying file 'main.cpp'
+    copying file 'testAlphabetizer.cpp'
+    copying file 'testStringBST.cpp'
+Preparing for testing...
+
+//@@ ======== SUBMISSION SCREENING START ========
+//@@ odayok01 submitting from /dev/pts/4 on vm-hw07.eecs.tufts.edu
+//@@                       at 2017-03-18 15:31:32
+
+
+3 : Checking for valid userid...
+
+
+
+
+
+This is submission 1.
+Your maximum number of submissions for hw4 is 5.
+
+
+
+  9: Checking required files
+     OK        testStringBST.cpp
+     OK        testAlphabetizer.cpp
+     OK        StringBST.cpp
+     OK        Alphabetizer.cpp
+     OK        StringBST.h
+     OK        Alphabetizer.h
+     OK        main.cpp
+     OK        Makefile
+     OK        README
+
+ 10: Checking if files are correct type
+     OK        Alphabetizer.cpp
+     OK        StringBST.cpp
+     OK        main.cpp
+     OK        testAlphabetizer.cpp
+     OK        testStringBST.cpp
+
+ 11: Checking if files are correct type
+     OK        Alphabetizer.h
+     OK        StringBST.h
+
+ 12: Checking if files are correct type
+     OK        README
+
+
+"Running tests. This might take a while. Please be patient..."
+
+Checking Files...
+********** Testing testBST.cpp **********
+// This is a test of the StringBST class
+testBST.cpp Failed!
+//---------- test program code: testBST.cpp ----------
+// This is a test of the StringBST class
+// For Homework 4, comp15 fall 2016
+// By Simon Mattsson
+#include <iostream>
+#include <csignal>
+#include <csetjmp>
+
+#include "StringBST.h"
+
+
+// To catch the segfaults in student's codes
+jmp_buf jBuffer;
+
+// Test Big 3 relies on nothing
+bool testBig3()
+{
+    StringBST test;
+    return true;
+}
+
+// Test isEmpty relies on a good default constructor
+bool testIsEmpty()
+{
+    StringBST test1;
+    return test1.isEmpty() == true;
+}
+
+// Test Size relies on good constructors
+bool testSize()
+{
+    bool allPassed = true;
+    StringBST test1;
+    std::string array1[4] = {"aa","bb","cc","dd"};
+    std::string array2[3] = {"z","m","a"};
+    StringBST test2(array1,4);
+    StringBST test3(array2,3);
+    allPassed &= (test1.size() == 0);
+    allPassed &= (test2.size() == 4);
+    allPassed &= (test3.size() == 3);
+    return allPassed;
+}
+
+// Test Clear relies on a good isEmpty and constructors
+bool testClear()
+{
+    bool allPassed = true;
+    StringBST test1;
+    std::string array[4] = {"a","m","c","v"};
+    StringBST test2(array,4);
+    test1.clear();
+    test2.clear();
+    allPassed &= test1.isEmpty();
+    allPassed &= test2.isEmpty();
+    return allPassed;
+}
+
+// TestPrint relies on good constructors
+bool testPrint()
+{
+    StringBST test1;
+    std::string array[4] = {"a","m","c","v"};
+    StringBST test2(array,4);
+    test1.print();
+    std::cout << std::endl;
+    test2.print(); 
+    std::cout << std::endl;
+    return true;
+}
+
+// TestAdd relies on good constructors and prints
+bool testAdd()
+{
+    StringBST test1;
+    test1.add("a");
+    test1.print();
+    std::cout << std::endl;
+    test1.add("m");
+    test1.print();
+    std::cout << std::endl;
+    test1.add("v");
+    test1.print();
+    std::cout << std::endl;
+    test1.add("d");
+    test1.print();
+    std::cout << std::endl;
+    test1.add("u");
+    test1.print();
+    std::cout << std::endl;
+    test1.add("h");
+    test1.print();
+    std::cout << std::endl;
+    test1.add("e");
+    test1.print();
+    std::cout << std::endl;
+    test1.add("q");
+    test1.print();
+    std::cout << std::endl;
+    return true;
+}
+
+// TestRemove relies on good constructors and prints
+bool testRemove()
+{
+    std::string array[4] = {"a","m","q","d"};
+    StringBST test1(array,4);
+    test1.print();
+    std::cout << std::endl;
+    test1.remove("d");
+    test1.print();
+    std::cout << std::endl;
+    test1.remove("a");
+    test1.print();
+    std::cout << std::endl;
+    test1.remove("m");
+    test1.print();
+    std::cout << std::endl;
+    return test1.remove("m") == false;
+}
+
+// TestContains relies on good constructors
+bool testContains()
+{
+    bool allPassed = true;
+    std::string array[4] = {"a","b","c","!"};
+    StringBST test1(array,4);
+    allPassed &= test1.contains("a");
+    allPassed &= test1.contains("b");
+    allPassed &= test1.contains("d") == false;
+    allPassed &= test1.contains("!");
+    return allPassed;
+}
+
+
+
+void sighandler(int signum)
+{
+    longjmp(jBuffer,signum);
+}
+
+void runTests(int numTests , std::string names[] , bool (*tests[])())
+{
+    bool allPassed = true;
+    for(int test = 0; test < numTests; test++)
+    {   
+        try
+        {
+            // Start segfault signal buffer
+            signal(SIGSEGV,sighandler);
+
+            // Jumps to here in case of an access violation
+            int sig;
+            sig = setjmp(jBuffer);
+            if(sig == 0)
+            {
+                bool result = tests[test]();
+                std::string resultStr = result ? " passed" : " failed";
+                std::cout << "Test " << names[test] << resultStr << std::endl;
+            }
+            else
+            {
+                std::cout << "Segfault in test" << names[test] << std::endl;
+                throw -1;
+            }
+        }
+        catch(...)
+        {
+            std::cout << "continuing..." << std::endl;
+            allPassed = false;
+        }
+    }
+    if(allPassed)
+    {
+        std::cout << "All tests passed!" << std::endl;
+    }
+}
+
+int main()
+{
+    int numTests = 8;
+    std::string testNames[10] =
+    {
+        "big3",
+        "isEmpty",
+        "size",
+        "clear",
+        "print",
+        "add",
+        "remove",
+        "contains"
+    };
+    bool (*tests[10])() =
+    {
+        testBig3,
+        testIsEmpty,
+        testSize,
+        testClear,
+        testPrint,
+        testAdd,
+        testRemove,
+        testContains
+    };
+
+    runTests(numTests,testNames,tests);
+}
+//---------- end test program code ----------
+
+//---------- Expected output for testBST.cpp (first 5000 characters): 
+Test big3 passed
+Test isEmpty passed
+Test size passed
+Test clear passed
+[]
+[[] a 1 [[[] c 1 []] m 1 [[] v 1 []]]]
+Test print passed
+[[] a 1 []]
+[[] a 1 [[] m 1 []]]
+[[] a 1 [[] m 1 [[] v 1 []]]]
+[[] a 1 [[[] d 1 []] m 1 [[] v 1 []]]]
+[[] a 1 [[[] d 1 []] m 1 [[[] u 1 []] v 1 []]]]
+[[] a 1 [[[] d 1 [[] h 1 []]] m 1 [[[] u 1 []] v 1 []]]]
+[[] a 1 [[[] d 1 [[[] e 1 []] h 1 []]] m 1 [[[] u 1 []] v 1 []]]]
+[[] a 1 [[[] d 1 [[[] e 1 []] h 1 []]] m 1 [[[[] q 1 []] u 1 []] v 1 []]]]
+Test add passed
+[[] a 1 [[[] d 1 []] m 1 [[] q 1 []]]]
+[[] a 1 [[] m 1 [[] q 1 []]]]
+[[] m 1 [[] q 1 []]]
+[[] q 1 []]
+Test remove passed
+Test contains passed
+All tests passed!
+//---------- End of expected output for testBST.cpp.
+
+//---------- Your output for testBST.cpp (first 5000 characters): 
+Test big3 passed
+Test isEmpty passed
+Test size passed
+Test clear passed
+
+[[] a 1 [[[] c 1 []] m 1 [[] v 1 []]]]
+Test print passed
+[[] a 1 []]
+[[] a 1 [[] m 1 []]]
+[[] a 1 [[] m 1 [[] v 1 []]]]
+[[] a 1 [[[] d 1 []] m 1 [[] v 1 []]]]
+[[] a 1 [[[] d 1 []] m 1 [[[] u 1 []] v 1 []]]]
+[[] a 1 [[[] d 1 [[] h 1 []]] m 1 [[[] u 1 []] v 1 []]]]
+[[] a 1 [[[] d 1 [[[] e 1 []] h 1 []]] m 1 [[[] u 1 []] v 1 []]]]
+[[] a 1 [[[] d 1 [[[] e 1 []] h 1 []]] m 1 [[[[] q 1 []] u 1 []] v 1 []]]]
+Test add passed
+[[] a 1 [[[] d 1 []] m 1 [[] q 1 []]]]
+Segfault in testremove
+continuing...
+Test contains failed
+//---------- End of your output for testBST.cpp.
+(I'm not sure what type of error it was.
+You can check http://goo.gl/reLHm8 and see what
+Unix Signal $ stands for)
+
+//---------- diff for testBST.cpp (first 5000 characters): 
+5c5
+< []
+---
+> 
+18,23c18,20
+< [[] a 1 [[] m 1 [[] q 1 []]]]
+< [[] m 1 [[] q 1 []]]
+< [[] q 1 []]
+< Test remove passed
+< Test contains passed
+< All tests passed!
+---
+> Segfault in testremove
+> continuing...
+> Test contains failed
+//---------- End of diff for testBST.cpp.
+Running valgrind to check for memory leaks.
+valgrind reported errors!
+==14894== Memcheck, a memory error detector
+==14894== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==14894== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==14894== Command: ./hw4
+==14894== 
+Test big3 passed
+Test isEmpty passed
+Test size passed
+Test clear passed
+
+[[] a 1 [[[] c 1 []] m 1 [[] v 1 []]]]
+Test print passed
+[[] a 1 []]
+[[] a 1 [[] m 1 []]]
+[[] a 1 [[] m 1 [[] v 1 []]]]
+[[] a 1 [[[] d 1 []] m 1 [[] v 1 []]]]
+[[] a 1 [[[] d 1 []] m 1 [[[] u 1 []] v 1 []]]]
+[[] a 1 [[[] d 1 [[] h 1 []]] m 1 [[[] u 1 []] v 1 []]]]
+[[] a 1 [[[] d 1 [[[] e 1 []] h 1 []]] m 1 [[[] u 1 []] v 1 []]]]
+[[] a 1 [[[] d 1 [[[] e 1 []] h 1 []]] m 1 [[[[] q 1 []] u 1 []] v 1 []]]]
+Test add passed
+[[] a 1 [[[] d 1 []] m 1 [[] q 1 []]]]
+==14894== Invalid read of size 4
+==14894==    at 0x402F8C: StringBST::removeFromLeft(StringBST::BSTNode*) (StringBST.cpp:440)
+==14894==    by 0x402BA2: StringBST::removeHelp(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, StringBST::BSTNode*&) (StringBST.cpp:405)
+==14894==    by 0x402C64: StringBST::removeHelp(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, StringBST::BSTNode*&) (StringBST.cpp:409)
+==14894==    by 0x402980: StringBST::remove(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (StringBST.cpp:380)
+==14894==    by 0x404BD1: testRemove() (testBST.cpp:108)
+==14894==    by 0x40580E: runTests(int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, bool (**)()) (testBST.cpp:155)
+==14894==    by 0x405E8B: main (testBST.cpp:203)
+==14894==  Address 0x38 is not stack'd, malloc'd or (recently) free'd
+==14894== 
+Segfault in testremove
+continuing...
+Test contains failed
+==14894== 
+==14894== HEAP SUMMARY:
+==14894==     in use at exit: 72,960 bytes in 5 blocks
+==14894==   total heap usage: 33 allocs, 28 frees, 74,820 bytes allocated
+==14894== 
+==14894== LEAK SUMMARY:
+==14894==    definitely lost: 64 bytes in 1 blocks
+==14894==    indirectly lost: 192 bytes in 3 blocks
+==14894==      possibly lost: 0 bytes in 0 blocks
+==14894==    still reachable: 72,704 bytes in 1 blocks
+==14894==         suppressed: 0 bytes in 0 blocks
+==14894== Rerun with --leak-check=full to see details of leaked memory
+==14894== 
+==14894== For counts of detected and suppressed errors, rerun with: -v
+==14894== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 3 from 3)
+********** Done Testing testBST.cpp **********
+
+*/*/*/*/*/ Some of the tests failed! /*/*/*/*/*
+Tests that failed: testBST.cpp, valgrind(testBST.cpp), 
+
+*/*/*/*/*/ THIS IS NOT THE END OF YOUR SUBMISSION */*/*/*/*/*/*/
+
+Checking Files...
+Making submitted tests
+No make errors
+No errors!
+No warnings!
+********** Testing filein.alp **********
+filein.alp Failed!
+//---------- test program code: filein.alp ----------
+f <-- note, this isa word!
+
+This tests file input to your alphabetizer
+note that we will read the starting 'f' as
+a string, not an output mode. The exact command
+being run (without quotes):
+
+./alphabetizer "f" "filein.alp"
+
+Try it out for yourself!
+//---------- end test program code ----------
+
+//---------- Expected output for filein.alp (first 5000 characters): 
+[ filein.alp, f : "f", "filein.alp", 'f', (without, ./alphabetizer, <--, The, This, Try, a, alphabetizer, an, as, being, command, exact, f, file, for, input, isa, it, mode., not, note, note,, out, output, quotes):, read, run, starting, string,, tests, that, the, this, to, we, will, word!, your, yourself! ]//---------- End of expected output for filein.alp.
+
+//---------- Your output for filein.alp (first 5000 characters): 
+[ filein.alp, f : , "f", "filein.alp", 'f', (without, ./alphabetizer, <--, The, This, Try, a, alphabetizer, an, as, being, command, exact, f, file, for, input, isa, it, mode., not, note, note,, out, output, quotes):, read, run, starting, string,, tests, that, the, this, to, we, will, word!, your, yourself! ]
+//---------- End of your output for filein.alp.
+(I'm not sure what type of error it was.
+You can check http://goo.gl/reLHm8 and see what
+Unix Signal $ stands for)
+
+//---------- diff for filein.alp (first 5000 characters): 
+1c1
+< [ filein.alp, f : "f", "filein.alp", 'f', (without, ./alphabetizer, <--, The, This, Try, a, alphabetizer, an, as, being, command, exact, f, file, for, input, isa, it, mode., not, note, note,, out, output, quotes):, read, run, starting, string,, tests, that, the, this, to, we, will, word!, your, yourself! ]
+\ No newline at end of file
+---
+> [ filein.alp, f : , "f", "filein.alp", 'f', (without, ./alphabetizer, <--, The, This, Try, a, alphabetizer, an, as, being, command, exact, f, file, for, input, isa, it, mode., not, note, note,, out, output, quotes):, read, run, starting, string,, tests, that, the, this, to, we, will, word!, your, yourself! ]
+//---------- End of diff for filein.alp.
+Running valgrind to check for memory leaks.
+No memory leaks!
+********** Done Testing filein.alp **********
+
+********** Testing letters.alp **********
+letters.alp Failed!
+//---------- test program code: letters.alp ----------
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+a b c d e f g h i j k l m n o p q r s t u v w x y z
+//---------- end test program code ----------
+
+//---------- Expected output for letters.alp (first 5000 characters): 
+[ letters.alp, r : z, y, x, w, v, u, t, s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, Z, Y, X, W, V, U, T, S, R, Q, P, O, N, M, L, K, J, I, H, G, F, E, D, C, B, A ]//---------- End of expected output for letters.alp.
+
+//---------- Your output for letters.alp (first 5000 characters): 
+[ letters.alp, r : z, y, x, w, v, u, t, s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, Z, Y, X, W, V, U, T, S, R, Q, P, O, N, M, L, K, J, I, H, G, F, E, D, C, B, A,  ]
+//---------- End of your output for letters.alp.
+(I'm not sure what type of error it was.
+You can check http://goo.gl/reLHm8 and see what
+Unix Signal $ stands for)
+
+//---------- diff for letters.alp (first 5000 characters): 
+1c1
+< [ letters.alp, r : z, y, x, w, v, u, t, s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, Z, Y, X, W, V, U, T, S, R, Q, P, O, N, M, L, K, J, I, H, G, F, E, D, C, B, A ]
+\ No newline at end of file
+---
+> [ letters.alp, r : z, y, x, w, v, u, t, s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, Z, Y, X, W, V, U, T, S, R, Q, P, O, N, M, L, K, J, I, H, G, F, E, D, C, B, A,  ]
+//---------- End of diff for letters.alp.
+Running valgrind to check for memory leaks.
+No memory leaks!
+********** Done Testing letters.alp **********
+
+********** Testing multiple.alp **********
+multiple.alp Failed!
+//---------- test program code: multiple.alp ----------
+This is a test of the alphabetizer alphabetizer alphabetizer
+This is a test of the alphabetizer
+Come on let's sing aloooong .
+
+This is a test of the alphabetizer alphabetizer alphabetizer
+This is a test of the alphabetizer
+Everybody let's sing along !
+//---------- end test program code ----------
+
+//---------- Expected output for multiple.alp (first 5000 characters): 
+[ multiple.alp, r : the, the, the, the, test, test, test, test, sing, sing, on, of, of, of, of, let's, let's, is, is, is, is, alphabetizer, alphabetizer, alphabetizer, alphabetizer, alphabetizer, alphabetizer, alphabetizer, alphabetizer, aloooong, along, a, a, a, a, This, This, This, This, Everybody, Come, ., ! ]//---------- End of expected output for multiple.alp.
+
+//---------- Your output for multiple.alp (first 5000 characters): 
+[ multiple.alp, r : the, the, the, the, test, test, test, test, sing, sing, on, of, of, of, of, let's, let's, is, is, is, is, alphabetizer, alphabetizer, alphabetizer, alphabetizer, alphabetizer, alphabetizer, alphabetizer, alphabetizer, aloooong, along, a, a, a, a, This, This, This, This, Everybody, Come, ., !,  ]
+//---------- End of your output for multiple.alp.
+(I'm not sure what type of error it was.
+You can check http://goo.gl/reLHm8 and see what
+Unix Signal $ stands for)
+
+//---------- diff for multiple.alp (first 5000 characters): 
+1c1
+< [ multiple.alp, r : the, the, the, the, test, test, test, test, sing, sing, on, of, of, of, of, let's, let's, is, is, is, is, alphabetizer, alphabetizer, alphabetizer, alphabetizer, alphabetizer, alphabetizer, alphabetizer, alphabetizer, aloooong, along, a, a, a, a, This, This, This, This, Everybody, Come, ., ! ]
+\ No newline at end of file
+---
+> [ multiple.alp, r : the, the, the, the, test, test, test, test, sing, sing, on, of, of, of, of, let's, let's, is, is, is, is, alphabetizer, alphabetizer, alphabetizer, alphabetizer, alphabetizer, alphabetizer, alphabetizer, alphabetizer, aloooong, along, a, a, a, a, This, This, This, This, Everybody, Come, ., !,  ]
+//---------- End of diff for multiple.alp.
+Running valgrind to check for memory leaks.
+No memory leaks!
+********** Done Testing multiple.alp **********
+
+********** Testing stdin.alp **********
+stdin.alp Failed!
+//---------- test program code: stdin.alp ----------
+f
+this is a test of standard input
+these words will be passed to the alphabetizer
+through redirection. The exact command:
+
+cat stdin.alp | ./alphebatizer
+
+try it out for yourself
+//---------- end test program code ----------
+
+//---------- Expected output for stdin.alp (first 5000 characters): 
+[ cin, f : ./alphebatizer, The, a, alphabetizer, be, cat, command:, exact, for, input, is, it, of, out, passed, redirection., standard, stdin.alp, test, the, these, this, through, to, try, will, words, yourself, | ]//---------- End of expected output for stdin.alp.
+
+//---------- Your output for stdin.alp (first 5000 characters): 
+[ cin, f : ./alphebatizer, The, a, alphabetizer, be, cat, command:, exact, for, input, is, it, of, out, passed, redirection., standard, stdin.alp, test, the, these, this, through, to, try, will, words, yourself, | ]
+//---------- End of your output for stdin.alp.
+(I'm not sure what type of error it was.
+You can check http://goo.gl/reLHm8 and see what
+Unix Signal $ stands for)
+
+//---------- diff for stdin.alp (first 5000 characters): 
+1c1
+< [ cin, f : ./alphebatizer, The, a, alphabetizer, be, cat, command:, exact, for, input, is, it, of, out, passed, redirection., standard, stdin.alp, test, the, these, this, through, to, try, will, words, yourself, | ]
+\ No newline at end of file
+---
+> [ cin, f : ./alphebatizer, The, a, alphabetizer, be, cat, command:, exact, for, input, is, it, of, out, passed, redirection., standard, stdin.alp, test, the, these, this, through, to, try, will, words, yourself, | ]
+//---------- End of diff for stdin.alp.
+Running valgrind to check for memory leaks.
+No memory leaks!
+********** Done Testing stdin.alp **********
+
+*/*/*/*/*/ Some of the tests failed! /*/*/*/*/*
+Tests that failed: filein.alp, letters.alp, multiple.alp, stdin.alp, 
+
+
+
+//@@                       at 2017-03-18 15:32:24
+//@@ ======== SUBMISSION SCREENING END =====
+
+...done preparing for testing.
+provide started by odayok01 on Sat Mar 18 15:32:24 2017
+your submission has been accepted!
+cleaning up after testing...
+Cleaning up...
+...done cleaning up after testing
+your submission is complete!
